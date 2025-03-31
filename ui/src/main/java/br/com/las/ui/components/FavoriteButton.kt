@@ -28,8 +28,7 @@ fun FavoriteButton(
     Button(
         onClick = onClick,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+            .fillMaxWidth(),
         shape = RoundedCornerShape(20.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xFF1A2341),
@@ -41,12 +40,12 @@ fun FavoriteButton(
             contentDescription = null,
             tint = Color.White
         )
-        Spacer(modifier = Modifier.width(8.dp))
+        Spacer(modifier = Modifier.width(18.dp))
         Text(text = "Favorite", fontSize = 16.sp)
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun FavoriteButtonPreview() {
     MeliChallengeTheme {

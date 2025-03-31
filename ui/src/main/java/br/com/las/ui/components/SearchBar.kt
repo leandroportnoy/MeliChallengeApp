@@ -62,7 +62,7 @@ fun SearchBar(
 @Preview(showBackground = true, name = "Buscar...")
 @Composable
 fun SearchBarPreview() {
-    var search by remember { mutableStateOf("") }
+    var search by remember { mutableStateOf("Buscar produtos") }
     MeliChallengeTheme {
         SearchBar(
             searchQuery = search,
