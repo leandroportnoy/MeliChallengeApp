@@ -9,9 +9,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.las.ui.MeliBackground
 import br.com.las.ui.R
 
 
@@ -23,7 +25,7 @@ fun Logo(
     Column(
         modifier = modifier
             .fillMaxSize()
-            .background(color = androidx.compose.ui.graphics.Color.White)
+            .background(MeliBackground)
             .padding(16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = androidx.compose.ui.Alignment.CenterHorizontally
@@ -32,8 +34,8 @@ fun Logo(
             painter = painterResource(id = image),
             contentDescription = null,
             modifier = Modifier
-                .size(100.dp)
-                .padding(bottom = 16.dp)
+                .size(200.dp)
+
         )
     }
 }

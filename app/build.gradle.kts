@@ -43,9 +43,10 @@ android {
 
 dependencies {
     implementation(project(":ui"))
+    implementation(project(":features"))
+
 //    implementation(project(":core"))
 //    implementation(project(":data"))
-//    implementation(project(":features"))
 //    implementation(project(":common"))
 
     implementation(libs.androidx.core.ktx)
@@ -66,5 +67,7 @@ dependencies {
 
     implementation(libs.dagger.hilt)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.androidx.navigation.compose)
 
 }
