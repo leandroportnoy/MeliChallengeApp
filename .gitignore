@@ -1,15 +1,65 @@
+# =============== #
+# Android Studio  #
+# =============== #
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+.idea/
+.idea/*
+
+# ============= #
+# Gradle        #
+# ============= #
+.gradle/
+build/
+!**/build.gradle.kts
+!**/settings.gradle.kts
+!**/gradle.properties
+!**/libs.versions.toml
+
+# ============= #
+# Local Config  #
+# ============= #
 local.properties
+/.cxx/
+/.externalNativeBuild/
+
+# ============= #
+# OS/Tools      #
+# ============= #
+.DS_Store
+*.log
+
+# ============= #
+# Captures etc  #
+# ============= #
+/captures/
+/output/
+
+# ============= #
+# Kotlin KSP/KAPT #
+# ============= #
+kspGenerated/
+**/build/generated/ksp/
+**/build/generated/source/kaptKotlin/
+**/build/generated/source/kapt/
+
+# ============= #
+# Jetpack Compose previews #
+# ============= #
+**/debug/compose*.apk
+**/composePreview/
+
+# ============= #
+# Packaging outputs #
+# ============= #
+*.apk
+*.ap_
+
+
+# ============= #
+# Ignore generated test result outputs #
+# ============= #
+test-results/
+androidTest-results/
+# ============= #
+
+**/.kotlin/
