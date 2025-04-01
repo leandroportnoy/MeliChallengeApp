@@ -32,7 +32,7 @@ fun SplashScreen(
     ) {
         Logo(
             modifier = Modifier
-                .fillMaxWidth(0.5f)
+                .fillMaxWidth(0.7f)
                 .aspectRatio(1f),
         )
     }

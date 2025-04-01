@@ -2,6 +2,7 @@ package br.com.las.ui.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -30,14 +31,15 @@ fun BackButton(
     Button(
         onClick = onClick,
         modifier = modifier
+            .height(48.dp)
             .fillMaxWidth(),
+
         shape = RoundedCornerShape(20.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = MeliBlue,
             contentColor = MeliWhite
         )
     ) {
-
         Text(text = "Voltar", fontSize = 16.sp)
     }
 }

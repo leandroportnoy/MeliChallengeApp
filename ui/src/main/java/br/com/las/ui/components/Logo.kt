@@ -34,7 +34,8 @@ fun Logo(
             painter = painterResource(id = image),
             contentDescription = null,
             modifier = Modifier
-                .size(200.dp)
+                .size(320.dp)
+                .background(MeliBackground)
 
         )
     }
