@@ -9,6 +9,6 @@ class ListProductsUseCaseImpl @Inject constructor(
     private val repository: ProductsRepository
 ): ListProductsUseCase {
     override suspend fun invoke(query: String): RepositoryResult<List<Product>> {
-        return repository.searchProducts(query)
+        return repository.getProductsList(query)
     }
 }

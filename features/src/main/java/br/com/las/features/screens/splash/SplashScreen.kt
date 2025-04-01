@@ -20,7 +20,7 @@ fun SplashScreen(
     onNavigateToList: (NavigationRoutes) -> Unit
 ) {
     LaunchedEffect(Unit) {
-        delay(3000)
+        delay(2000)
         onNavigateToList(NavigationRoutes.ProductList)
     }
 

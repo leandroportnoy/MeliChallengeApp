@@ -54,7 +54,7 @@ fun ProductListScreen(
                 .background(MeliBackground)
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(horizontal = 20.dp, vertical = 10.dp)
+                .padding(horizontal = 8.dp, vertical = 8.dp)
         ) {
             when {
                 searchQuery.value.isNotEmpty() -> {
@@ -97,7 +97,7 @@ fun ProductListScreen(
 
                         is UiState.Success -> {
                             ProductListContent(
-                                products = (productState as UiState.Success<List<Product>>).data,
+                                products = (productState.value as UiState.Success<List<Product>>).data,
                                 listState = listState,
                                 isLoading = productState.value is UiState.Loading,
                                 onProductClick = { product ->

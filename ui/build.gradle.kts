@@ -49,4 +49,5 @@ dependencies {
 
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
+    implementation(libs.coil.compose)
 }

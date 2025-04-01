@@ -1,5 +1,6 @@
 package br.com.las.features.screens.products.list
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import br.com.las.common.toBrazilianCurrency
 import br.com.las.core.domain.model.Product
 import br.com.las.ui.components.ProductListItemCard
 import coil.compose.rememberAsyncImagePainter
@@ -25,17 +27,21 @@ fun ProductListContent(
 ) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.spacedBy(15.dp),
-        contentPadding = PaddingValues(vertical = 15.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        contentPadding = PaddingValues(vertical = 4.dp),
         state = listState
     ) {
         itemsIndexed(products) { _, product ->
+            val imagePainter = rememberAsyncImagePainter(
+                model = product.thumbnailUrl,
+                onError = { Log.e("ImageLoad", "Erro: ${it.result.throwable}") }
+            )
             ProductListItemCard(
-                imagePainter = rememberAsyncImagePainter(model = product.thumbnailUrl),
+                imagePainter = imagePainter,
                 title = product.title,
-                description = "teste",
-                extraInfo = "teste",
-                location = "teste",
+                description = product.description,
+                extraInfo = product.price.toBrazilianCurrency(),
+                location = "---",
                 modifier = Modifier
                     .clickable { onProductClick(product) }
             )
@@ -62,33 +68,35 @@ fun ProductListContentPreview() {
     val sampleProducts = listOf(
         Product(
             id = "1",
-            title = "Title test",
-            city = "City Test",
-            storeName = "Store Name Test",
-            thumbnailUrl = "https://via.placeholder.com/150",
+            title = "Product 1",
             price = 10.0,
-            state = "State test"
+            currency = "USD",
+            thumbnailUrl = "https://via.placeholder.com/150",
+            pictures = listOf("https://via.placeholder.com/150"),
+            description = "Description of Product 1",
+            attributes = emptyList()
         ),
-
         Product(
-            id = "2",
-            title = "Title test",
-            city = "City Test",
-            storeName = "Store Name Test",
-            thumbnailUrl = "https://via.placeholder.com/150",
+            id = "1",
+            title = "Product 1",
             price = 10.0,
-            state = "State test"
+            currency = "USD",
+            thumbnailUrl = "https://via.placeholder.com/150",
+            pictures = listOf("https://via.placeholder.com/150"),
+            description = "Description of Product 1",
+            attributes = emptyList()
         ),
-
         Product(
-            id = "3",
-            title = "Title test",
-            city = "City Test",
-            storeName = "Store Name Test",
-            thumbnailUrl = "https://via.placeholder.com/150",
+            id = "1",
+            title = "Product 1",
             price = 10.0,
-            state = "State test"
+            currency = "USD",
+            thumbnailUrl = "https://via.placeholder.com/150",
+            pictures = listOf("https://via.placeholder.com/150"),
+            description = "Description of Product 1",
+            attributes = emptyList()
         )
+
     )
 
     ProductListContent(
