@@ -1,32 +1,34 @@
 package br.com.las.features.navigation
 
-import android.window.SplashScreen
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import br.com.las.features.screens.products.list.ProductListScreen
 import br.com.las.features.screens.splash.SplashScreen
 
 @Composable
-fun AppNavigation(navController: NavHostController = rememberNavController()) {
+fun AppNavigation(
+    navController: NavHostController
+) {
     NavHost(
         navController = navController,
         startDestination = NavigationRoutes.Splash.route
     ) {
         composable(NavigationRoutes.Splash.route) {
             SplashScreen {
-//                navController.navigate(NavigationRoutes.ProductList.route) {
-//                    popUpTo(NavigationRoutes.Splash.route) { inclusive = true }
-//                }
+                navController.navigate(NavigationRoutes.ProductList.route) {
+                    popUpTo(NavigationRoutes.Splash.route) { inclusive = true }
+                }
             }
         }
-//
-//        composable(NavigationRoutes.ProductList.route) {
-//            ProductListScreen(onProductClick = { product ->
-//                navController.navigate(NavigationRoutes.ProductDetails.createRoute(product.id))
-//            })
-//        }
+
+        composable(NavigationRoutes.ProductList.route) {
+            ProductListScreen(
+                listState = rememberLazyListState()
+            )
+        }
 //
 //        composable(
 //            route = NavigationRoutes.ProductDetails.route,
