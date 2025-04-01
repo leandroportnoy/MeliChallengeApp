@@ -23,16 +23,15 @@ class ProductsRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getProductDetails(idProduct: Long): RepositoryResult<Product> {
-        //TODO implement this method
-        return RepositoryResult.Failure(RepositoryError(message = "Método não implementado"))
-//        return try {
-//            val response = apiService.getProductDetails(idProduct)
-//            response.toDomain().let { product ->
-//                RepositoryResult.Success(product)
-//            }
-//        } catch (e: Exception) {
-//            RepositoryResult.Failure(RepositoryError(message = e.message ?: "Erro inesperado"))
-//        }
+    override suspend fun getProductDetails(idProduct: String): RepositoryResult<Product> {
+        return try {
+            val product = dataSource.loadProductById(idProduct)
+            if (product == null)
+                RepositoryResult.Failure(RepositoryError(message = "Produto não encontrado"))
+            else
+                RepositoryResult.Success(product)
+        } catch (e: Exception) {
+            RepositoryResult.Failure(RepositoryError(message = e.message ?: "Erro inesperado"))
+        }
     }
 }

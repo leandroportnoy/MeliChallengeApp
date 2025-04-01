@@ -54,6 +54,41 @@ class LocalJsonProductDataSource(private val context: Context) {
         }
     }
 
+    suspend fun loadProductById(id: String): Product? = withContext(Dispatchers.IO) {
+        try {
+            val itemJson = loadJson("item-$id.json")
+            val descJson = loadJson("item-$id-description.json")
+            val item = JSONObject(itemJson)
+            val desc = JSONObject(descJson)
+
+            val pictures = item.getJSONArray("pictures")
+            val attributes = item.getJSONArray("attributes")
+
+            Product(
+                id = item.getString("id"),
+                title = item.getString("title"),
+                price = item.getDouble("price"),
+                currency = item.optString("currency_id", "BRL"),
+                thumbnailUrl = item.optString("thumbnail", ""),
+                pictures = (0 until pictures.length()).map { i ->
+                    pictures.getJSONObject(i).getString("url")
+                },
+                description = desc.optString("plain_text", ""),
+                attributes = (0 until attributes.length()).map { i ->
+                    val attr = attributes.getJSONObject(i)
+                    ProductAttribute(
+                        name = attr.getString("name"),
+                        value = attr.optString("value_name", "")
+                    )
+                }
+            )
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+
     private fun loadJson(fileName: String): String =
         context.assets.open(fileName).bufferedReader().use { it.readText() }
 }

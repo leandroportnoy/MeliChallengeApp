@@ -1,8 +1,8 @@
 package br.com.las.core.di
 
 import br.com.las.core.domain.repository.ProductsRepository
-import br.com.las.core.domain.usecase.GetProductDetailsUseCase
-import br.com.las.core.domain.usecase.GetProductDetailsUseCaseImpl
+import br.com.las.core.domain.usecase.ProductDetailsUseCase
+import br.com.las.core.domain.usecase.ProductDetailsUseCaseImpl
 import br.com.las.core.domain.usecase.ListProductsUseCase
 import br.com.las.core.domain.usecase.ListProductsUseCaseImpl
 import dagger.Module
@@ -27,7 +27,7 @@ object UseCaseModule {
     @Singleton
     fun provideGetProductDetailsUseCase(
         repository: ProductsRepository
-    ): GetProductDetailsUseCase {
-        return GetProductDetailsUseCaseImpl(repository)
+    ): ProductDetailsUseCase {
+        return ProductDetailsUseCaseImpl(repository)
     }
 }

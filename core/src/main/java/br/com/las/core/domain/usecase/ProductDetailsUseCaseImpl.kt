@@ -5,10 +5,10 @@ import br.com.las.core.domain.repository.ProductsRepository
 import br.com.las.core.domain.result.RepositoryResult
 import javax.inject.Inject
 
-class GetProductDetailsUseCaseImpl @Inject constructor(
+class ProductDetailsUseCaseImpl @Inject constructor(
     private val repository: ProductsRepository
-): GetProductDetailsUseCase {
-    override suspend operator fun invoke(id: Long): RepositoryResult<Product> {
+): ProductDetailsUseCase {
+    override suspend operator fun invoke(id: String): RepositoryResult<Product> {
         return repository.getProductDetails(id)
     }
 }

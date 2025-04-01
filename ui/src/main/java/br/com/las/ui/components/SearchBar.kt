@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import br.com.las.ui.MeliBlue
 import br.com.las.ui.MeliChallengeTheme
 import br.com.las.ui.MeliGray
+import br.com.las.ui.MeliWhite
 
 @Composable
 fun SearchBar(
@@ -48,9 +49,8 @@ fun SearchBar(
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
             colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = Color(0xFFFFFDE7),
-                focusedContainerColor = Color(0xFFFFFDE7),
-                disabledContainerColor = Color(0xFFFFFDE7),
+                unfocusedContainerColor = MeliWhite,
+                focusedContainerColor = MeliGray,
                 cursorColor = MeliBlue,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent

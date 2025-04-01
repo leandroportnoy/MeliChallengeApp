@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -28,10 +26,11 @@ import br.com.las.ui.components.SearchBar
 @Composable
 fun ProductListScreen(
     listState: LazyListState,
+    onNavigateToProductDetail: (String) -> Unit
 ) {
     val viewModel: ProductListViewModel = hiltViewModel()
 
-    val productState = viewModel.productListState.collectAsState()
+    val productListState = viewModel.productListState.collectAsState()
     val searchResultState = viewModel.searchResultState.collectAsState()
     val searchQuery = viewModel.searchQuery.collectAsState()
 
@@ -61,7 +60,7 @@ fun ProductListScreen(
                     when (searchResultState.value) {
                         is UiState.Loading -> {
                             CircularProgressIndicator(
-                                modifier = androidx.compose.ui.Modifier.align(
+                                modifier = Modifier.align(
                                     Alignment.Center
                                 )
                             )
@@ -71,9 +70,9 @@ fun ProductListScreen(
                             ProductListContent(
                                 products = (searchResultState as UiState.Success<List<Product>>).data,
                                 listState = listState,
-                                isLoading = productState.value is UiState.Loading,
+                                isLoading = productListState.value is UiState.Loading,
                                 onProductClick = { product ->
-                                    //TODO Handle product click
+                                    onNavigateToProductDetail(product.id)
                                 },
                             )
                         }
@@ -90,18 +89,18 @@ fun ProductListScreen(
                     }
                 }
                 else -> {
-                    when (productState.value) {
+                    when (productListState.value) {
                         is UiState.Loading -> {
                             // Show loading indicator
                         }
 
                         is UiState.Success -> {
                             ProductListContent(
-                                products = (productState.value as UiState.Success<List<Product>>).data,
+                                products = (productListState.value as UiState.Success<List<Product>>).data,
                                 listState = listState,
-                                isLoading = productState.value is UiState.Loading,
+                                isLoading = productListState.value is UiState.Loading,
                                 onProductClick = { product ->
-                                    // Handle product click
+                                    onNavigateToProductDetail(product.id)
                                 },
                             )
                         }
@@ -148,6 +147,7 @@ private fun IdleState() {
 @Composable
 fun ProductListScreenPreview() {
     ProductListScreen(
-        listState = LazyListState()
+        listState = LazyListState(),
+        onNavigateToProductDetail = {}
     )
 }

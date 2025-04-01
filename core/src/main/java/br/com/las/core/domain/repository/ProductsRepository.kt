@@ -5,5 +5,5 @@ import br.com.las.core.domain.result.RepositoryResult
 
 interface ProductsRepository {
     suspend fun getProductsList(query: String): RepositoryResult<List<Product>>
-    suspend fun getProductDetails(idProduct: Long): RepositoryResult<Product>
+    suspend fun getProductDetails(idProduct: String): RepositoryResult<Product>
 }

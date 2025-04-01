@@ -1,6 +1,5 @@
 package br.com.las.ui.components
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -27,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import br.com.las.ui.MeliBackground
 import br.com.las.ui.MeliChallengeTheme
 import br.com.las.ui.MeliSurface
-import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun ProductListItemCard(

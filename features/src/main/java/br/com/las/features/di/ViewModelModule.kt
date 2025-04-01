@@ -2,6 +2,8 @@ package br.com.las.features.di
 
 import androidx.lifecycle.SavedStateHandle
 import br.com.las.core.domain.usecase.ListProductsUseCase
+import br.com.las.core.domain.usecase.ProductDetailsUseCase
+import br.com.las.features.screens.products.details.ProductDetailsViewModel
 import br.com.las.features.screens.products.list.ProductListViewModel
 import dagger.Module
 import dagger.Provides
@@ -21,6 +23,16 @@ object ViewModelModule {
     ): ProductListViewModel {
         return ProductListViewModel(
             listProductsUseCase = listProductsUseCase
+        )
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideProductDetailsViewModel(
+        productDetailsUseCase: ProductDetailsUseCase
+    ): ProductDetailsViewModel {
+        return ProductDetailsViewModel(
+            productDetailsUseCase = productDetailsUseCase
         )
     }
 

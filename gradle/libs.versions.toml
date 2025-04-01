@@ -22,6 +22,7 @@ compose = "1.7.8"
 material3Android = "1.3.1"
 coil = "2.6.0"
 navigationCompose = "2.8.9"
+accompanistPlaceholderMaterial = "0.34.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -53,6 +54,7 @@ compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+accompanistPlaceholderMaterial = { group = "com.google.accompanist", name = "accompanist-placeholder-material", version.ref = "accompanistPlaceholderMaterial" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
