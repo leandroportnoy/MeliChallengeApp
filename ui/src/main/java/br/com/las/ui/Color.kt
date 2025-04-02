@@ -8,7 +8,6 @@ val MeliGray = Color(0xFF666666)
 val MeliWhite = Color.White
 val MeliSurface = Color(0xFFFFFCE0)
 val MeliTextPrimary = Color.Black
-val MeliTextSecondary = MeliGray
 
 
 

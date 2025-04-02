@@ -1,6 +1,5 @@
 package br.com.las.features.screens.products.details
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -15,8 +14,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -25,14 +22,11 @@ import br.com.las.core.domain.model.Product
 import br.com.las.ui.MeliBackground
 import br.com.las.ui.MeliSurface
 import br.com.las.ui.components.BackButton
-import br.com.las.ui.components.FavoriteButton
 import br.com.las.ui.components.ShimmerImage
-import coil.compose.rememberAsyncImagePainter
 
 @Composable
 fun ProductDetailsContent(
     product: Product,
-    isLoading: Boolean,
     onBack: () -> Unit
 ) {
     Column(
@@ -94,13 +88,13 @@ fun ProductDetailsContent(
             }
         }
 
-        Spacer(Modifier.height(24.dp))
+        Spacer(modifier = Modifier.weight(1f))
 
-        // Botão de favoritar
         BackButton(
-            onClick = {
-                onBack()
-            }
+            onClick = { onBack() },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp, vertical = 8.dp)
         )
     }
 }

@@ -22,7 +22,6 @@ import coil.compose.rememberAsyncImagePainter
 fun ProductListContent(
     products: List<Product>,
     listState: LazyListState,
-    isLoading: Boolean,
     onProductClick: (Product) -> Unit
 ) {
     LazyColumn(
@@ -45,19 +44,6 @@ fun ProductListContent(
                 modifier = Modifier
                     .clickable { onProductClick(product) }
             )
-        }
-
-        if (isLoading) {
-//            item {
-//                Box(
-//                    modifier = Modifier
-//                        .fillMaxWidth()
-//                        .padding(16.dp),
-//                    contentAlignment = Alignment.Center
-//                ) {
-//                    CircularProgressIndicator()
-//                }
-//            }
         }
     }
 }
@@ -102,7 +88,6 @@ fun ProductListContentPreview() {
     ProductListContent(
         products = sampleProducts,
         listState = rememberLazyListState(),
-        isLoading = false,
         onProductClick = {}
     )
 }

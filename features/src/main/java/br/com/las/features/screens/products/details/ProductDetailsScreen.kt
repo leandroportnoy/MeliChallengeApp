@@ -77,7 +77,6 @@ fun ProductDetailsScreen(
                         val product = (productState.value as UiState.Success<Product>).data
                         ProductDetailsContent(
                             product = product,
-                            isLoading = false,
                             onBack = onBack
                         )
                     }

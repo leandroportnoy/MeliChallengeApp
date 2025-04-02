@@ -1,5 +1,6 @@
 package br.com.las.features.screens.products.list
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,13 +9,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -28,6 +28,7 @@ fun ProductListScreen(
     listState: LazyListState,
     onNavigateToProductDetail: (String) -> Unit
 ) {
+    val context = LocalContext.current
     val viewModel: ProductListViewModel = hiltViewModel()
 
     val productListState = viewModel.productListState.collectAsState()
@@ -68,9 +69,8 @@ fun ProductListScreen(
 
                         is UiState.Success -> {
                             ProductListContent(
-                                products = (searchResultState as UiState.Success<List<Product>>).data,
+                                products = (searchResultState.value as UiState.Success<List<Product>>).data,
                                 listState = listState,
-                                isLoading = productListState.value is UiState.Loading,
                                 onProductClick = { product ->
                                     onNavigateToProductDetail(product.id)
                                 },
@@ -78,11 +78,11 @@ fun ProductListScreen(
                         }
 
                         is UiState.Empty -> {
-                            EmptySearchResult()
+                            Toast.makeText(context, "⚠️ Lista vazia", Toast.LENGTH_LONG).show()
                         }
 
                         is UiState.Failure -> {
-                            //TODO : Show error message
+                            Toast.makeText(context, "⚠️ Erro ao carregar os dados", Toast.LENGTH_LONG).show()
                         }
 
                         else -> Unit
@@ -91,14 +91,17 @@ fun ProductListScreen(
                 else -> {
                     when (productListState.value) {
                         is UiState.Loading -> {
-                            // Show loading indicator
+                            CircularProgressIndicator(
+                                modifier = Modifier.align(
+                                    Alignment.Center
+                                )
+                            )
                         }
 
                         is UiState.Success -> {
                             ProductListContent(
                                 products = (productListState.value as UiState.Success<List<Product>>).data,
                                 listState = listState,
-                                isLoading = productListState.value is UiState.Loading,
                                 onProductClick = { product ->
                                     onNavigateToProductDetail(product.id)
                                 },
@@ -106,40 +109,19 @@ fun ProductListScreen(
                         }
 
                         is UiState.Empty -> {
-                            EmptySearchResult()
+                            Toast.makeText(context, "⚠️ Lista vazia", Toast.LENGTH_LONG).show()
                         }
 
                         is UiState.Failure -> {
-                            // Show error message
+                            Toast.makeText(context, "⚠️ Erro ao carregar os dados", Toast.LENGTH_LONG).show()
                         }
 
-                        is UiState.Idle -> {
-                            // Show idle state
-                        }
+                        else -> Unit
                     }
                 }
             }
         }
 
-    }
-}
-
-
-@Composable
-private fun EmptySearchResult() {
-    //TODO: Implement empty search result UI
-}
-
-@Composable
-private fun IdleState() {
-    Box(
-        modifier = androidx.compose.ui.Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Message" /*stringResource(R.string.login_welcome)*/,
-            style = MaterialTheme.typography.bodyLarge
-        )
     }
 }
 

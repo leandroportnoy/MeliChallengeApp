@@ -42,10 +42,14 @@ class ProductListViewModel @Inject constructor (
 
             when (val result = listProductsUseCase.invoke(query)) {
                 is RepositoryResult.Success -> {
-                    if (result.data.isEmpty()) {
-                        _searchResultState.value = UiState.Empty
+                    val filteredList = result.data.filter { product ->
+                        product.title.contains(query, ignoreCase = true)
+                    }
+
+                    _searchResultState.value = if (filteredList.isEmpty()) {
+                        UiState.Empty
                     } else {
-                        _searchResultState.value = UiState.Success(result.data)
+                        UiState.Success(filteredList)
                     }
                 }
 
