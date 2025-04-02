@@ -14,7 +14,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import br.com.las.ui.MeliSurface
+import br.com.las.ui.MeliBackground
 import coil.compose.AsyncImagePainter
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -41,7 +41,7 @@ fun ShimmerImage(
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(16.dp))
-            .background(MeliSurface),
+            .background(MeliBackground),
         contentAlignment = Alignment.Center
     ) {
         if (isLoading) {
