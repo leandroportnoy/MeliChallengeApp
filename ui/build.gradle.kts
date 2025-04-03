@@ -51,4 +51,14 @@ dependencies {
     implementation(libs.compose.ui.tooling)
     implementation(libs.coil.compose)
     implementation(libs.accompanistPlaceholderMaterial)
+
+    testImplementation(libs.junit)
+
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    debugImplementation(libs.androidx.ui.test.manifest)
+
 }

@@ -41,6 +41,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":common"))
 
+    // Compose & Core
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
@@ -49,21 +50,26 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
 
+    // Compose extras
     implementation(libs.compose.ui)
     implementation(libs.compose.ui.tooling)
     implementation(libs.coil.compose)
-
-    implementation(libs.dagger.hilt)
-    kapt(libs.hilt.compiler)
-//    implementation(libs.dagger.hilt)
-//    ksp(libs.hilt.compiler)
-
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.navigation.compose)
 
+    // Hilt
+    implementation(libs.dagger.hilt)
+    kapt(libs.hilt.compiler)
 
+    // Unit Tests
+    testImplementation(libs.junit)
+
+    // Instrumented Tests (Compose UI Tests + Espresso + Navigation)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    androidTestImplementation(libs.androidx.navigation.testing)
+    debugImplementation(libs.androidx.ui.test.manifest)
 }
